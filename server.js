@@ -1,4 +1,6 @@
 const express = require("express");
+const messagesController = require("./controllers/messages.controller");
+const friendsController = require("./controllers/friends.controller");
 const app = express();
 
 const PORT = 3000;
@@ -55,13 +57,9 @@ app.get("/friends/:friendId", (req, res) => {
   }
 });
 
-app.get("/messages", (req, res) => {
-  res.send("from messages");
-});
+app.get("/messages", messagesController.getMessages);
 
-app.post("/messages", (req, res) => {
-  console.log("Updating messages..");
-});
+app.post("/messages", messagesController.postMessage);
 
 app.listen(PORT, () => {
   console.log("Server is listening on port 3000");
